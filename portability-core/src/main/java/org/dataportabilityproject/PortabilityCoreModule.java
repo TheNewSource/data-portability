@@ -60,7 +60,6 @@ public final class PortabilityCoreModule extends AbstractModule {
           CommonSettings.class.getClassLoader().getResourceAsStream("settings/common.yaml");
       CommonSettings commonSettings = mapper.readValue(in, CommonSettings.class);
 
-
       return commonSettings;
     } catch (IOException e) {
       throw new IllegalArgumentException("Problem parsing common settings", e);
@@ -74,11 +73,13 @@ public final class PortabilityCoreModule extends AbstractModule {
       CommonSettings commonSettings,
       Provider<LocalCloudFactory> localCloudFactoryProvider,
       Provider<GoogleCloudFactory> googleCloudFactoryProvider) {
+    System.out.println("\n\n!!!!!CLOUD: " + commonSettings.getCloud());
     if (commonSettings.getCloud() == SupportedCloud.LOCAL) {
       return localCloudFactoryProvider.get();
-    } else if (commonSettings.getCloud() == SupportedCloud.GOOGLE) {
-      return googleCloudFactoryProvider.get();
-    } else {
+    } else { //if (commonSettings.getCloud() == SupportedCloud.GOOGLE) {
+      //return googleCloudFactoryProvider.get();
+
+    //} else {
       throw new UnsupportedOperationException(commonSettings.getCloud() + " is not supported yet.");
     }
   }

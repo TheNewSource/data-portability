@@ -27,6 +27,10 @@ import com.google.api.services.cloudkms.v1.model.DecryptResponse;
 import java.io.IOException;
 import org.dataportabilityproject.cloud.interfaces.CryptoKeyManagementSystem;
 
+/**
+ * Google Cloud Platform implementation of {@link CryptoKeyManagementSystem} which writes to
+ * Cloud KMS.
+ */
 final class GoogleCryptoKeyManagementSystem implements CryptoKeyManagementSystem {
   private CloudKMS cloudKMS;
 

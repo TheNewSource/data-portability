@@ -25,6 +25,7 @@ import org.dataportabilityproject.cloud.interfaces.BucketStore;
 import org.dataportabilityproject.cloud.interfaces.CloudFactory;
 import org.dataportabilityproject.cloud.interfaces.CryptoKeyManagementSystem;
 import org.dataportabilityproject.cloud.interfaces.JobDataCache;
+import org.dataportabilityproject.cloud.interfaces.Metrics;
 import org.dataportabilityproject.cloud.interfaces.PersistentKeyValueStore;
 
 /**
@@ -56,6 +57,11 @@ public class LocalCloudFactory implements CloudFactory {
     } catch (ExecutionException e) {
       throw new IllegalStateException("Couldn't creat loading jobdatacache", e);
     }
+  }
+
+  @Override
+  public Metrics getMetrics() {
+    return null;
   }
 
   @Override

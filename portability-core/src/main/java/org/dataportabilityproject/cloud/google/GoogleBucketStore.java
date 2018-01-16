@@ -20,15 +20,21 @@ import com.google.cloud.storage.Bucket;
 import com.google.cloud.storage.Storage;
 import com.google.cloud.storage.StorageOptions;
 import com.google.inject.Inject;
+import org.dataportabilityproject.cloud.google.Annotations.ProjectId;
 import org.dataportabilityproject.cloud.interfaces.BucketStore;
 
+/**
+ * Google Cloud Platform implementation of {@link BucketStore} which writes to Google Cloud Storage.
+ */
 final class GoogleBucketStore implements BucketStore {
   private Storage storage;
 
   @Inject
-  GoogleBucketStore(GoogleCredentials googleCredentials) {
+  GoogleBucketStore(
+      GoogleCredentials googleCredentials,
+      @ProjectId String projectId) {
     storage = StorageOptions.newBuilder()
-        .setProjectId(GoogleCloudFactory.getGoogleProjectId())
+        .setProjectId(projectId)
         .setCredentials(googleCredentials)
         .build().getService();
   }
